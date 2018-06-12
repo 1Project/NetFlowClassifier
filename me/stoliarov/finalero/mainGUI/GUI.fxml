@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="vBox" alignment="CENTER" prefHeight="450.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.66" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.stoliarov.finalero.mainGUI.ControllerFX">
+    <children>
+        <MenuBar VBox.vgrow="NEVER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Файл">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="New" />
+                        <MenuItem mnemonicParsing="false" text="Open…" />
+                        <Menu mnemonicParsing="false" text="Open Recent" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" text="Save" />
+                        <MenuItem mnemonicParsing="false" text="Save As…" />
+                        <MenuItem mnemonicParsing="false" text="Revert" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Preferences…" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Quit" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Помощь">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Undo" />
+                        <MenuItem mnemonicParsing="false" text="Redo" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Cut" />
+                        <MenuItem mnemonicParsing="false" text="Copy" />
+                        <MenuItem mnemonicParsing="false" text="Paste" />
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Select All" />
+                        <MenuItem mnemonicParsing="false" text="Unselect All" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+      <TabPane prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Исходные данные">
+               <content>
+                  <VBox prefHeight="265.0" prefWidth="640.0" spacing="15.0">
+                     <children>
+                        <GridPane vgap="5.0">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="312.0" minWidth="10.0" percentWidth="40.0" prefWidth="149.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="443.0" minWidth="10.0" percentWidth="15.0" prefWidth="125.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="443.0" minWidth="10.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="41.0" minHeight="30.0" percentHeight="33.0" prefHeight="33.0" />
+                              <RowConstraints maxHeight="59.0" minHeight="19.0" percentHeight="33.0" prefHeight="27.0" valignment="CENTER" />
+                              <RowConstraints maxHeight="35.0" minHeight="11.0" percentHeight="33.0" prefHeight="35.0" valignment="CENTER" />
+                          </rowConstraints>
+                           <children>
+                              <Button fx:id="analyzerTrainFilePathButton" mnemonicParsing="false" onAction="#analyzerTrainFilePathButtonClick" text="Открыть" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <TextField fx:id="analyzerTrainFilePathTextField" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Label text="Обучающий набор" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <Label text="Тестовый набор" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                              <Button fx:id="analyzerTestFilePathButton" mnemonicParsing="false" onAction="#analyzerTestFilePathButtonClick" text="Открыть" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                              <TextField fx:id="analyzerTestFilePathTextField" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Button fx:id="analyzerAddPcapButton" alignment="CENTER" mnemonicParsing="false" onAction="#analyzerAddPcapButtonClick" text="Добавить PCAP в базу данных" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                              <Button fx:id="analyzerSqlToFileButton" mnemonicParsing="false" onAction="#analyzerSqlToFileButtonClick" text="Сохранить SQL запрос в набор данных" GridPane.halignment="CENTER" />
+                           </children>
+                        </GridPane>
+                        <TextArea fx:id="analyzerTextArea" editable="false" prefWidth="630.0">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </TextArea>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+               </content>
+          </Tab>
+            <Tab text="Выбор признаков">
+               <content>
+                  <VBox alignment="CENTER" spacing="15.0">
+                     <children>
+                        <GridPane>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" percentWidth="35.0" prefWidth="233.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="442.0" minWidth="10.0" percentWidth="35.0" prefWidth="248.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="442.0" minWidth="10.0" prefWidth="178.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Алгоритм выбора признаков" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <ChoiceBox fx:id="featureAlgoListChoiceBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+                              <Button fx:id="featureStartButton" mnemonicParsing="false" onAction="#featureStartButtonClick" prefHeight="25.0" prefWidth="145.0" text="Запуск алгоритма" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                           </children>
+                        </GridPane>
+                        <TextArea fx:id="featureTextArea" editable="false" style="-fx-font-family: monospace;">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </TextArea>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+          <Tab text="Классификация">
+               <content>
+                  <VBox alignment="CENTER" spacing="15.0">
+                     <children>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" percentWidth="35.0" prefWidth="233.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="442.0" minWidth="10.0" percentWidth="35.0" prefWidth="248.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="442.0" minWidth="10.0" prefWidth="178.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Алгоритм классификации" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <ChoiceBox fx:id="classifierAlgoListChoiceBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+                              <Button fx:id="classifierStartButton" mnemonicParsing="false" onAction="#classifierStartButtonClick" prefHeight="25.0" prefWidth="145.0" text="Запуск классификации" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                           </children>
+                        </GridPane>
+                        <TextArea fx:id="classifierTextArea" editable="false" style="-fx-font-family: monospace;">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </TextArea>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+               </content>
+          </Tab>
+            <Tab text="Оценка">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+                     <children>
+                        <TextArea fx:id="evaluatorTextArea" editable="false">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </TextArea>
+                     </children>
+                     <padding>
+                        <Insets bottom="12.0" left="12.0" right="12.0" top="5.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Захват пакетов">
+               <content>
+                  <VBox spacing="15.0">
+                     <children>
+                        <GridPane>
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" minWidth="10.0" percentWidth="35.0" prefWidth="166.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" percentWidth="35.0" prefWidth="297.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" prefWidth="196.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Сетевая карта" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                              <ChoiceBox fx:id="snifferDevsChoiceBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
+                              <ToggleButton fx:id="snifferStartButton" mnemonicParsing="false" text="Запуск захвата пакетов" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                           </children>
+                        </GridPane>
+                        <TextArea fx:id="snifferTextArea" editable="false">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </TextArea>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Результаты">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+                     <children>
+                        <TableView fx:id="resultTableView" prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn fx:id="classnameColumn" prefWidth="152.0" text="Класс приложения" />
+                            <TableColumn fx:id="packetsColumn" minWidth="0.0" prefWidth="162.0" text="Количество пакетов" />
+                              <TableColumn fx:id="flowsColumn" prefWidth="155.0" text="Количество потоков" />
+                              <TableColumn fx:id="sizeColumn" prefWidth="159.0" text="Размер в байтах" />
+                          </columns>
+                        </TableView>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <TextArea fx:id="textArea" prefHeight="100.0" style="-fx-font-family: monospace;">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Consolas" size="12.0" />
+         </font>
+      </TextArea>
+      <HBox alignment="CENTER_RIGHT" spacing="35.0">
+         <children>
+            <Label fx:id="statusLabel" alignment="BOTTOM_RIGHT" text="Label" textAlignment="RIGHT" visible="false" HBox.hgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="3.0" left="50.0" right="40.0" top="3.0" />
+               </padding>
+            </Label>
+            <ProgressBar fx:id="progressBar" disable="true" progress="1.0" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </ProgressBar>
+         </children>
+         <padding>
+            <Insets left="15.0" right="15.0" />
+         </padding>
+      </HBox>
+    </children>
+</VBox>
